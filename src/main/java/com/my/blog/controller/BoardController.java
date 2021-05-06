@@ -15,4 +15,8 @@ BoardServiceImpl service;
 public String home() {
 	return "board/home";
 }
+@RequestMapping("/boardlist")
+public String boardList() {
+	return "board/boardlist";
+}
 }
