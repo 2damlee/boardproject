@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -130,8 +129,19 @@
                                         </thead>
                                         
                                         <tbody>
+                                        	<%--  <c:forEach items="${list}" var="board">
+												<tr>
+													<td>${board.bno}</td>
+													<td>${board.id }</td>
+													
+															<a href="<%=request.getContextPath()%>/detail?seq=${board.seq}">${board.title }</a></td>
+												
+												</tr>
+											</c:forEach>  --%>
                                             <tr>
-                                                <td>Tiger Nixon</td>
+                                                <td><c:forEach items="${list}" var="board">
+                                                ${board.bno}
+                                                </c:forEach></td>
                                                 <td>System Architect</td>
                                                 <td>Edinburgh</td>  
                                             </tr>

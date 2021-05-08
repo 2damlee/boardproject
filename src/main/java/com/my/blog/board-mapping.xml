@@ -4,6 +4,10 @@
   
 <mapper namespace="blog">
 
+<!--모두 조회 -->
+	<select id="selectall" resultType="board">
+	select*from c_board
+	</select>
 
 
 </mapper>
