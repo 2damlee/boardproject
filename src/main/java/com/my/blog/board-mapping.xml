@@ -4,11 +4,25 @@
   
 <mapper namespace="blog">
 
-<!--모두 조회 -->
+<!-- select all -->
 	<select id="selectall" resultType="board">
 	select*from c_board
 	</select>
+	
+	
+<!-- detail -->
+	<select id="detail" resultType="board" parameterType="int">
+	select*from c_board where bno = #{bno}
+	</select>
+	
+	<update id="viewcount" parameterType="int">
+	update c_board set viewcount = viewcount+1 where bno=#{bno}
+	</update>
 
+<!-- Write -->
+	<insert id="write" parameterType="board">
+	insert into c_board values(bno_seq.nextval, #{lang}, #{id}, #{password}, #{password}, #{title}, #{contents}, 0, sysdate)
+	</insert>
 
 </mapper>
 

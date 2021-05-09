@@ -9,7 +9,14 @@ String lang, id;
 int password;
 String title, contents;
 int viewcount;
+String time;
 
+public String getTime() {
+	return time;
+}
+public void setTime(String time) {
+	this.time = time;
+}
 public int getBno() {
 	return bno;
 }

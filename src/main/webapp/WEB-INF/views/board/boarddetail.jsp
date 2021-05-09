@@ -10,12 +10,12 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Static Navigation - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="<%=request.getContextPath()%>/resources/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/home">BLOG</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -112,22 +112,42 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Static Navigation</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Static Navigation</li>
-                        </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <p class="mb-0">
-                                    This page is an example of using static navigation. By removing the
-                                    <code>.sb-nav-fixed</code>
-                                    class from the
-                                    <code>body</code>
-                                    , the top navigation and side navigation will become static on scroll. Scroll down this page to see an example.
-                                </p>
-                            </div>
-                        </div>
+               <br><br>
+                       
+<c:forEach items="${detail}" var="det">
+	 <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">READ BOARD</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" method="post">
+              
+              	<input th:field="*{det.bno}" type="hidden"  >
+                <div class="form-group">
+                  <label for="exampleInputBoardTitle">Title</label>
+                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.title}</textarea>
+                </div>
+                <div class="form-group">
+                  <label>Content</label>
+                  <textarea th:inline="text" class="form-control" rows="3" readonly="readonly">${det.contents}</textarea>
+                </div>
+                
+                
+              <div class="form-group">
+                  <label for="exampleInputBoardTitle">Writer</label>
+                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.id}</textarea>
+                </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="button" class="btn btn-warning">Modify</button>
+                <button type="button" class="btn btn-danger">Remove</button>
+                <button type="button" class="btn btn-primary" onclick = "location.href = '<%=request.getContextPath()%>/boardlist' ">ListAll</button>
+              </div>
+            </form>
+          </div>
+          </c:forEach>
                         <div style="height: 100vh"></div>
                         <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
                     </div>

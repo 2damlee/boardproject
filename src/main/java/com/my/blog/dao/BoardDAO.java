@@ -16,4 +16,14 @@ public class BoardDAO {
 		List<BoardVO> list = session.selectList("blog.selectall");
 		return list;
 	}
+	
+	public List<BoardVO> getDetail(int bno) {
+		List<BoardVO> detail = session.selectList("blog.detail", bno);
+		session.update("blog.viewcount", bno);
+		return detail;
+	}
+	
+	public void writeBoard(BoardVO vo) {
+		session.insert("blog.write", vo);
+	}
 }

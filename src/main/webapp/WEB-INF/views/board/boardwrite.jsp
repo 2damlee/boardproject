@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Static Navigation - SB Admin</title>
         <link href="<%=request.getContextPath()%>/resources/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">
+    <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/home">BLOG</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -112,41 +115,45 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+               <br><br>
                        
-                        <div class="card mb-4">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Number</th>
-                                                <th>Writer</th>
-                                                <th>Title</th>
-                                                <th>Viewcount</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        
-                                        <tbody>
-                                            
-                                            	<c:forEach items="${list}" var="board">
-                                            	<tr>
-                                            	<td>${board.bno}</td>
-                                            	<td>${board.id}</td>
-                                            	<td><a href="<%=request.getContextPath()%>/boarddetail?bno=${board.bno}">${board.title}</a></td>
-                                            	<td>${board.viewcount}</td>
-                                            	</tr>
-                                                </c:forEach> 
-                                           
-                                            
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+<c:forEach items="${detail}" var="det">
+	 <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">READ BOARD</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" method="post">
               
+              	<input th:field="*{det.bno}" type="hidden"  >
+                <div class="form-group">
+                  <label for="exampleInputBoardTitle">Title</label>
+                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.title}</textarea>
+                </div>
+                <div class="form-group">
+                  <label>Content</label>
+                  <textarea th:inline="text" class="form-control" rows="3" readonly="readonly">${det.contents}</textarea>
+                </div>
+                
+                
+              <div class="form-group">
+                  <label for="exampleInputBoardTitle">Writer</label>
+                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.id}</textarea>
+                </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="button" class="btn btn-warning">Modify</button>
+                <button type="button" class="btn btn-danger">Remove</button>
+                <button type="button" class="btn btn-primary" onclick = "location.href = '<%=request.getContextPath()%>/boardlist' ">ListAll</button>
+              </div>
+            </form>
+          </div>
+          </c:forEach>
+                        <div style="height: 100vh"></div>
+                        <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
+                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -165,11 +172,5 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
     </body>
 </html>
