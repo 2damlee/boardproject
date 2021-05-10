@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -116,11 +113,10 @@
                 <main>
                     <div class="container-fluid">
                <br><br>
-                       
-<c:forEach items="${detail}" var="det">
+
 	 <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">READ BOARD</h3>
+              <h3 class="box-title">WRITE BOARD</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -129,28 +125,27 @@
               	<input th:field="*{det.bno}" type="hidden"  >
                 <div class="form-group">
                   <label for="exampleInputBoardTitle">Title</label>
-                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.title}</textarea>
+                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"></textarea>
                 </div>
                 <div class="form-group">
                   <label>Content</label>
-                  <textarea th:inline="text" class="form-control" rows="3" readonly="readonly">${det.contents}</textarea>
+                  <textarea th:inline="text" class="form-control" rows="3"></textarea>
                 </div>
                 
                 
               <div class="form-group">
                   <label for="exampleInputBoardTitle">Writer</label>
-                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.id}</textarea>
+                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"></textarea>
                 </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="button" class="btn btn-warning">Modify</button>
-                <button type="button" class="btn btn-danger">Remove</button>
-                <button type="button" class="btn btn-primary" onclick = "location.href = '<%=request.getContextPath()%>/boardlist' ">ListAll</button>
+                <button type="insert" class="btn btn-warning">Write</button>
+                <button type="button" class="btn btn-danger" onclick = "location.href = '<%=request.getContextPath()%>/boardlist' ">Cancel</button>
               </div>
             </form>
           </div>
-          </c:forEach>
+
                         <div style="height: 100vh"></div>
                         <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
                     </div>

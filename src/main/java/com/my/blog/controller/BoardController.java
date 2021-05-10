@@ -51,7 +51,7 @@ public String writeBoardForm() {
 @RequestMapping(value="/boardwirte", method = RequestMethod.POST)
 public void boardWrite(BoardVO vo) {
 	service.writeBoard(vo);
-} //boardwrite.jsp 만들어야 함 
+} //boardwrite.jsp 만들어야 함  
 
 
 
