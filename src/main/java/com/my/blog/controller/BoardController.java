@@ -53,6 +53,10 @@ public void boardWrite(BoardVO vo) {
 	service.writeBoard(vo);
 } //boardwrite.jsp 만들어야 함  
 
+@RequestMapping(value="/chat")
+public String chat() {
+	return "/board/chat";
+} //boardwrite.jsp 만들어야 함  
 
 
 }
