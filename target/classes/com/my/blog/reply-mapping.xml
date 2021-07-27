@@ -5,7 +5,7 @@
 <mapper namespace="blog_reply">
 
 	<!-- get list -->
-	<select id="getReplyList" resultType="reply">
+	<select id="getReplyList" resultType="reply" parameterType="int">
 		SELECT bno, rno, id, password, contents, w_date, e_date 
 		FROM c_reply WHERE rno = #{rno} 
 		ORDER BY w_date DESC
