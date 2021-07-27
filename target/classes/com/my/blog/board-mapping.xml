@@ -4,24 +4,24 @@
   
 <mapper namespace="blog">
 
-<!-- select all -->
+	<!-- select all -->
 	<select id="selectall" resultType="board">
-	select*from c_board
+		SELECT*FROM c_board
 	</select>
 	
-	
-<!-- detail -->
+	<!-- detail -->
 	<select id="detail" resultType="board" parameterType="int">
-	select*from c_board where bno = #{bno}
+		SELECT*FROM c_board WHERE bno = #{bno}
 	</select>
 	
+	<!-- viewcount -->
 	<update id="viewcount" parameterType="int">
-	update c_board set viewcount = viewcount+1 where bno=#{bno}
+		UPDATE c_board SET viewcount = viewcount+1 WHERE bno=#{bno}
 	</update>
 
-<!-- Write -->
+	<!-- Write -->
 	<insert id="write" parameterType="board">
-	insert into c_board values(bno_seq.nextval, #{lang}, #{id}, #{password}, #{password}, #{title}, #{contents}, 0, sysdate)
+		INSERT INTO c_board VALUES(bno_seq.nextval, #{lang}, #{id}, #{password}, #{password}, #{title}, #{contents}, 0, sysdate)
 	</insert>
 
 </mapper>
