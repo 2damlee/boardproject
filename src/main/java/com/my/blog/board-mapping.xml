@@ -23,6 +23,18 @@
 	<insert id="write" parameterType="board">
 		INSERT INTO c_board VALUES(bno_seq.nextval, #{lang}, #{id}, #{password}, #{password}, #{title}, #{contents}, 0, sysdate)
 	</insert>
+	
+	<!-- update -->
+	<update id="update">
+		UPDATE c_board SET contents = #{contents}, title = #{title}
+		WHERE bno = #{bno}
+	</update>
+	
+	<!-- delete -->
+	<delete id="delete">
+		DELETE FROM c_board 
+		WHERE bno = #{bno}
+	</delete>
 
 </mapper>
 
