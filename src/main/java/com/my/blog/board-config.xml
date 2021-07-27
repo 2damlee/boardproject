@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.my.blog.vo.BoardVO" alias="board"/> 
 		<typeAlias type="com.my.blog.vo.MemberVO" alias="member"/>
+		<typeAlias type="com.my.blog.vo.ReplyVO" alias="reply"/>
 	</typeAliases> 
 	
 	
