@@ -5,7 +5,30 @@
 <mapper namespace="blog_reply">
 
 	<!-- get list -->
-
+	<select id="getReplyList" resultType="reply">
+		SELECT bno, rno, id, password, contents, w_date, e_date 
+		FROM c_reply WHERE rno = #{rno} 
+		ORDER BY w_date DESC
+	</select>
+	
+	<!-- insert -->
+	<insert id="saveReply" parameterType="reply">
+		INSERT INTO c_reply(bno, id, contents, w_date, e_date) 
+		VALUES(#{bno}, #{id}, #{contents}, sysdate, sysdate)
+	</insert>
+	
+	<!-- update -->
+	<update id="updateReply" parameterType="reply">
+		UPDATE c_reply SET contents = #{contents}, e_date = sysdate 
+		WHERE rno = #{rno}
+	</update>
+	
+	<!-- delete -->
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM c_reply 
+		WHERE rno = #{rno}
+	</delete>
+	
 </mapper>
 
 
