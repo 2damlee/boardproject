@@ -5,8 +5,14 @@ import org.springframework.stereotype.Component;
 @Component("boardvo")
 public class BoardVO {
 	int bno, password, viewcount;
-	String lang, id, title, contents, time;
+	String id, title, contents, time, nickname;
 	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getTime() {
 		return time;
 	}
@@ -18,12 +24,6 @@ public class BoardVO {
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
-	}
-	public String getLang() {
-		return lang;
-	}
-	public void setLang(String lang) {
-		this.lang = lang;
 	}
 	public String getId() {
 		return id;
