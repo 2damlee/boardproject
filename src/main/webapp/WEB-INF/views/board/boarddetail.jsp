@@ -9,9 +9,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Static Navigation - SB Admin</title>
+        <title>Board detail</title>
         <link href="<%=request.getContextPath()%>/resources/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <!-- jquery  --> 
+		<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-3.2.1.min.js"></script>
+		<!-- reply.js -->
+		<script src = "<%=request.getContextPath()%>/resources/js/reply.js"></script>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -114,42 +118,73 @@
                     <div class="container-fluid">
                <br><br>
                        
-<c:forEach items="${detail}" var="det">
-	 <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">READ BOARD</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" method="post">
-              
-              	<input th:field="*{det.bno}" type="hidden"  >
-                <div class="form-group">
-                  <label for="exampleInputBoardTitle">Title</label>
-                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.title}</textarea>
-                </div>
-                <div class="form-group">
-                  <label>Content</label>
-                  <textarea th:inline="text" class="form-control" rows="3" readonly="readonly">${det.contents}</textarea>
-                </div>
-                
-                
-              <div class="form-group">
-                  <label for="exampleInputBoardTitle">Writer</label>
-                  <textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.id}</textarea>
-                </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="button" class="btn btn-warning">Modify</button>
-                <button type="button" class="btn btn-danger">Remove</button>
-                <button type="button" class="btn btn-primary" onclick = "location.href = '<%=request.getContextPath()%>/boardlist' ">ListAll</button>
-              </div>
-            </form>
-          </div>
-          </c:forEach>
-                        <div style="height: 100vh"></div>
-                        <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div>
+		 
+	 		 <div class="box box-primary">
+	            <div class="box-header with-border">
+	              <h3 class="box-title">READ BOARD</h3>
+	            </div>
+	            <!-- /.box-header -->
+	            <!-- form read start -->
+	            <c:forEach items="${detail}" var="det">
+	            <form role="form" method="post">    
+	              	<input th:field="*{det.bno}" type="hidden">
+	                <div class="form-group">
+	                	<label for="title">Title</label>
+	                	<textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.title}</textarea>
+	                </div>
+	                <div class="form-group">
+	                	<label>Content</label>
+	                	<textarea th:inline="text" class="form-control" rows="3" readonly="readonly">${det.contents}</textarea>
+	                </div>   
+	              	<div class="form-group">
+	                  	<label for="writer">Writer</label>
+	                  	<textarea th:inline="text" class="form-control" rows="1" id="exampleInputBoardTitle"  readonly="readonly">${det.id}</textarea>
+	                </div>
+	                </c:forEach> 
+	             <!-- /.box-body -->
+				 <!-- button -->	
+	                <div class="box-footer">
+	                	<button type="button" class="btn btn-warning">Modify</button>
+	                	<button type="button" class="btn btn-danger">Remove</button>
+	                	<button type="button" class="btn btn-primary" onclick = "location.href = '<%=request.getContextPath()%>/boardlist' ">ListAll</button>
+	                </div>
+	            </form>
+	            <br><br>
+				<!-- reply list -->
+				<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+					<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
+					<div id="replyList"></div>
+					<c:forEach items="${replyList}" var="reply">
+						<input th:field="*{det.bno}" type="hidden" id = "bno">
+						<p class="id_are">id: ${reply.id}</p>
+						<p class="text-primary" rows="2" readonly="readonly">${reply.contents}</p>
+						<p class="text-right mb-2 mt-5">${reply.w_date}</p>
+					</c:forEach>
+				</div> 
+	            <!-- reply form -->
+	            <div class="card mb-2">
+					<div class="card-header bg-light">
+					        <i class="fa fa-comment fa"></i> REPLY
+					</div>
+					<div class="card-body">
+						<ul class="list-group list-group-flush">
+							<form role="replyform" method="post">
+							    <li class="list-group-item">
+								<div class="form-inline mb-2">
+									<label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
+									<input type="text" class="form-control ml-2" placeholder="Enter yourId" id="replyId">
+									<label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
+									<input type="password" class="form-control ml-2" placeholder="Enter password" id="replyPassword">
+								</div>
+								<textarea class="form-control" id="replycontent" rows="3"></textarea>
+								<button id="replybutton" type="button" class="btn btn-dark mt-3">post reply</button>
+							    </li>
+						    </form>
+						</ul>
+					</div>
+			
+				</div>
+          	</div>        
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
