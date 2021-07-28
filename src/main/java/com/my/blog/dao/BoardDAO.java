@@ -30,6 +30,14 @@ public class BoardDAO {
 		session.insert("blog.write", vo);
 	}
 	
+	public void updateBoard(BoardVO vo) {
+		session.insert("blog.update", vo);
+	}
+	
+	public void deleteBoard(int bno) {
+		session.delete("board.delete", bno);
+	}
+	
 	// reply 
 	public List<ReplyVO> getReplyList(int bno) {
 		List<ReplyVO> list = session.selectList("blog_reply.getReplyList", bno);
