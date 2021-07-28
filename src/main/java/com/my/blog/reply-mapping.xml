@@ -6,15 +6,14 @@
 
 	<!-- get list -->
 	<select id="getReplyList" resultType="reply" parameterType="int">
-		SELECT bno, rno, id, password, contents, w_date, e_date 
-		FROM c_reply WHERE rno = #{rno} 
+		SELECT*FROM c_reply WHERE bno = #{bno}  
 		ORDER BY w_date DESC
 	</select>
 	
 	<!-- insert -->
 	<insert id="saveReply" parameterType="reply">
-		INSERT INTO c_reply(bno, id, contents, w_date, e_date) 
-		VALUES(#{bno}, #{id}, #{contents}, sysdate, sysdate)
+		INSERT INTO c_reply VALUES(bno, rno, id, contents, w_date, e_date) 
+		VALUES(#{bno}, rno_seq.nextval ,#{id}, #{contents}, sysdate, sysdate)
 	</insert>
 	
 	<!-- update -->
