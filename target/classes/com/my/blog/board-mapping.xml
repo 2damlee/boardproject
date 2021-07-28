@@ -21,7 +21,7 @@
 
 	<!-- Write -->
 	<insert id="write" parameterType="board">
-		INSERT INTO c_board VALUES(bno_seq.nextval, #{lang}, #{id}, #{password}, #{password}, #{title}, #{contents}, 0, sysdate)
+		INSERT INTO c_board VALUES(bno_seq.nextval, #{id}, #{password}, #{title}, #{contents}, 0, sysdate, #{nickname})
 	</insert>
 	
 	<!-- update -->
