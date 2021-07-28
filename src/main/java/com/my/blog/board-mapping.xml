@@ -25,13 +25,13 @@
 	</insert>
 	
 	<!-- update -->
-	<update id="update">
+	<update id="update" parameterType="board">
 		UPDATE c_board SET contents = #{contents}, title = #{title}
 		WHERE bno = #{bno}
 	</update>
 	
 	<!-- delete -->
-	<delete id="delete">
+	<delete id="delete" parameterType="int">
 		DELETE FROM c_board 
 		WHERE bno = #{bno}
 	</delete>
